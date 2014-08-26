@@ -9,13 +9,15 @@ fi
 
 # warning of '--force'
 help () {
-    printf("there is \"--force\" if you know what you are doing.\n")
+    printf "there is \"--force\" if you know what you are doing.\n"
 }
 
 # copy the .emacs.d modules
 if [ -d ~/.emacs.d ] ; then
-    ln -s $FORCE .emacs.d/* ~/.emacs.d || help
-done
+    ln -s $FORCE $PWD/.emacs.d/* ~/.emacs.d || help
+fi
 
 # copy other config files
-ln -s $FORCE .* ~ || help
+for f in `find . -maxdepth 1 -type f`; do
+    ln -s $FORCE $PWD/$f ~ || help
+done
