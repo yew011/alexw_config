@@ -32,9 +32,8 @@
 (global-set-key (kbd "C-c SPC") 'complete-tag)
 
 ;; indentation
-(setq-default c-basic-offset 8
-                  tab-width 8
-                  indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 4)
 
 ;; fill the 80th char line
 (require 'fill-column-indicator)
