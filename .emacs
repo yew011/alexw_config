@@ -50,8 +50,16 @@
 (setq tags-file-name "~/alex_dev/TAGS")
 (setq tags-revert-without-query t)
 
-;; another key binding for 'occur
-(global-set-key (kbd "C-c o") 'occur)
+;; 'occur take current word as input
+(defun occur-symbol-at-point ()
+   (interactive)
+   (let ((sym (thing-at-point 'symbol)))
+     (if sym
+        (push (regexp-quote sym) regexp-history)) ;regexp-history defvared in replace.el
+       (call-interactively 'occur)))
+;; key binding for 'occur-symbol-at-point
+(global-set-key (kbd "C-c o") 'occur-symbol-at-point)
+
 
 ;; scroll other window up
 (global-set-key "\C-c\M-\C-v" `scroll-other-window-down)
