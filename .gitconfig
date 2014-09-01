@@ -26,7 +26,8 @@
     si = stash --keep-index
     cp = cherry-pick
     fp = format-patch
-    ra = rebase -i --autosquash
+    rb = rebase
+    ri = rebase -i
     rc = rebase --continue
     lo = log --oneline
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
