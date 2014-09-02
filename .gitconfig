@@ -15,6 +15,7 @@
     ap = add -p
     br = branch
     cm = commit
+    ca = commit --amend
     co = checkout
     cb = checkout -b
     df = diff
