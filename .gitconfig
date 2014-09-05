@@ -28,6 +28,7 @@
     cp = cherry-pick
     fp = format-patch
     qi = quiltimport --patches
+    rh = reset --hard
     rb = rebase
     ri = rebase -i
     rc = rebase --continue
