@@ -27,6 +27,7 @@
     si = stash --keep-index
     cp = cherry-pick
     fp = format-patch
+    qi = quiltimport --patches
     rb = rebase
     ri = rebase -i
     rc = rebase --continue
