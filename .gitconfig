@@ -18,6 +18,7 @@
     ca = commit --amend
     co = checkout
     cb = checkout -b
+    cf = clean -f
     df = diff
     dc = diff --cached
     dt = diff-tree --no-commit-id --name-only -r
