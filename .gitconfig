@@ -24,6 +24,7 @@
     dt = diff-tree --no-commit-id --name-only -r
     mt = mergetool
     sb = status -sb
+    se = send-email
     st = stash
     sp = stash pop
     si = stash --keep-index
