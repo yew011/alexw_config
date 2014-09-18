@@ -22,6 +22,7 @@
     df = diff
     dc = diff --cached
     dt = diff-tree --no-commit-id --name-only -r
+    mt = mergetool
     sb = status -sb
     st = stash
     sp = stash pop
