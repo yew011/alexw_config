@@ -19,6 +19,7 @@
     co = checkout
     cb = checkout -b
     cf = clean -f
+    cx = clean -dfx
     df = diff
     dc = diff --cached
     dt = diff-tree --no-commit-id --name-only -r
