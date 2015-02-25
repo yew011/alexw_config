@@ -2,6 +2,15 @@
 ;; to be further enriched,
 (add-to-list 'load-path "~/.emacs.d")
 
+(require 'git)
+(require 'git-blame)
+
+(autoload 'mo-git-blame-file "mo-git-blame" nil t)
+(autoload 'mo-git-blame-current "mo-git-blame" nil t)
+
+(global-set-key [?\C-c ?g ?c] 'mo-git-blame-current)
+(global-set-key [?\C-c ?g ?f] 'mo-git-blame-file)
+
 ;; mark the trailing whitespace
 (require 'whitespace)
 (setq whitespace-style '(face empty tabs lines-tail trailing))
