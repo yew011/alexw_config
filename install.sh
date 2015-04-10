@@ -17,7 +17,23 @@ if [ -d ~/.emacs.d ] ; then
     ln -s $FORCE $PWD/.emacs.d/* ~/.emacs.d || help
 fi
 
+# copy my scripts
+ln -s $FORCE $PWD/.alex_bin ~/.alex_bin
+
 # copy other config files
 for f in `find . -maxdepth 1 -type f`; do
     ln -s $FORCE $PWD/$f ~ || help
 done
+
+# modify the ~/.bashrc
+if ! grep -- '## alexw_config ##' ~/.bashrc 2>&1 1>/dev/null; then
+    printf '
+########## alexw_config ##########
+export PATH=$PATH:$HOME/.alex_bin
+export EDITOR=/usr/bin/emacs
+export LC_ALL=C
+##################################
+' >> ~/.bashrc
+else
+    printf ".bashrc already configured.\n"
+fi
