@@ -1,0 +1,29 @@
+#! /bin/bash
+
+trap '' 1 2 3 6 14 15 17 18 20
+
+# disable echo of type-in characters.
+stty -echo
+
+read -p "Please Enter Key: " key_1
+# line separator.
+echo
+
+read -p "Again: " key_2
+# line separator
+echo
+
+key_3=
+if [ "$key_1" = "$key_2" ]; then
+    tput clear
+    printf "Please enter key to unlock: \n" 1>&2
+    until [ "$key_3" = "$key_2" ]; do
+        read key_3
+    done
+else
+    echo "locktty: keys do not match" 1>&2
+fi
+
+tput clear
+# re-enable it.
+stty echo
