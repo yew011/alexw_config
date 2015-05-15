@@ -26,14 +26,18 @@ for f in `find . -maxdepth 1 -type f`; do
 done
 
 # modify the ~/.bashrc
-if ! grep -- '## alexw_config ##' ~/.bashrc 2>&1 1>/dev/null; then
-    printf '
+if grep -- '## alexw_config ##' ~/.bashrc 2>&1 1>/dev/null; then
+    printf ".bashrc already configured, REMOVE IT.\n"
+    sed -i '/alexw_config/,/alexw_config/d' ~/.bashrc
+fi
+
+printf "
 ########## alexw_config ##########
-export PATH=$PATH:$HOME/.alex_bin
+alias rmt='rm *~'
+alias rmh='rm \#*'
+
+export PATH=\$PATH:\$HOME/.alex_bin
 export EDITOR=/usr/bin/emacs
 export LC_ALL=C
-##################################
-' >> ~/.bashrc
-else
-    printf ".bashrc already configured.\n"
-fi
+########## alexw_config ##########
+" >> ~/.bashrc
