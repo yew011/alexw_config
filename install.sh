@@ -33,6 +33,23 @@ fi
 
 printf "
 ########## alexw_config ##########
+
+# tmux attach (inspired by Joe Stringer).
+function tmux_attach () {
+   local session_id=0
+   local client_id=\${session_id}+\$(date +%%Y%%m%%d%%H%%M%%S)
+   local empty_sessions=\$(tmux ls | grep -v attached | grep -v \${session_id}: | cut -d : -f1)
+   local idle=
+
+   for idle in \${empty_sessions}; do
+      tmux kill-session -t \${idle}
+   done
+
+   tmux new-session -d -t \${session_id} -s \${client_id}
+   tmux attach-session -t \${client_id}
+   tmux kill-session -t \${client_id}
+}
+
 alias rmt='rm *~'
 alias rmh='rm \#*'
 
