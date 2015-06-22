@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# To bundle files for later recover, provide file names as input argument
+# and save the output to a new file.
+#
+#    bundle file1 file2 > file1_2.bak
+#
+# To recover the bundled files, bash the bundled file.
+#
+#    bash file1_2.bak
+
+if [ "$1" = "--help" ]; then
+    echo "To bundle files for later recover, provide file names as input argument
+and save the output to a new file.
+
+    bundle file1 file2 > file1_2.bak
+
+To recover the bundled files, bash the bundled file.
+
+    bash file1_2.bak"
+
+    exit 0
+fi
+
+for file; do
+    if [ -f ${file} ]; then
+        # Makes sure file ends with newline.
+        sed -i -e '$a\' ${file}
+        echo "echo recover file: ${file} 1>&2"
+        echo "cat >${file} <<'end of ${file}'"
+        cat ${file}
+        echo "end of ${file}"
+    fi
+done
