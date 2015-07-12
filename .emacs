@@ -72,3 +72,8 @@
 
 ;; scroll other window up
 (global-set-key "\C-c\M-\C-v" `scroll-other-window-down)
+
+(require 'mouse)
+(xterm-mouse-mode t)
+(defun track-mouse (e))
+(setq mouse-sel-mode t)
