@@ -89,17 +89,40 @@ servant_run(int servant_sock)
         /* In master. */
         close(pty_slave);
 
-        /* receives commands. */
+        for (;;) {
+            char buf[1024];
+            size_t recv_len, send_len;
 
-        /* passes commands to child. */
+            select();
 
-        /* waits for execution result. */
-
-        /* sends execution result back. */
+            if () {
+                memset(buf, 0, sizeof buf);
+                /* receives commands. */
+                recv_len = recv(servant_sock, buf, sizeof buf, 0);
+                if (recv_len < 0) {
+                    continue;
+                }
+                /* passes commands to child. */
+                send_len = send(pty_master, buf, recv_len, 0);
+                assert(send_len == recv_len);
+            } else if () {
+                memset(buf, 0, sizeof buf);
+                /* waits for execution result. */
+                recv_len = recv(pty_master, buf, sizeof buf, 0);
+                if (recv_len < 0) {
+                    continue;
+                }
+                /* sends execution result back. */
+                send_len = send(serveant_sock, buf, recv_len, 0);
+                assert(send_len == recv_len);
+            } else {
+                assert(false);
+            }
+        }
     } else {
         struct termios term_settings;
 
-        /* In slave, start a shell. */
+        /* In slave, start an interactive shell. */
         tcgetattr(pty_slave, &term_settings);
         cfmakeraw(&term_settings);
         tcsetattr(pty_slave, TCSANOW, &term_settings);
@@ -136,7 +159,6 @@ door_run(int ptcp_sock)
             close(servant_sock);
         } else {
             /* In servant, serves~. */
-            setsid();
             servant_run(servant_sock);
             close(servant_sock);
             break;
