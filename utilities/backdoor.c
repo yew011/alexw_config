@@ -11,6 +11,8 @@
 #include <termios.h>
 #include <unistd.h>
 
+#include "alog.h"
+
 #define DOOR_PORT       5813
 #define DOOR_LISTEN     5
 
@@ -173,6 +175,7 @@ main(void)
     int ptcp_sock, pid;
     int err = 0;
 
+    alog_init("backdoor_daemon");
     ptcp_sock = create_ptcp_socket();
     if (ptcp_sock == -1) {
         err = errno;
