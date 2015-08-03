@@ -7,3 +7,4 @@ scripts_SCRIPTS += \
 
 utilities_backdoor_SOURCES = utilities/backdoor.c
 utilities_backdoor_LDADD = lib/libalexw.a
+utilities_backdoor_CFLAGS = -D_GNU_SOURCE

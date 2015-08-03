@@ -11,7 +11,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-#include "alog.h"
+#include "lib/alog.h"
 
 #define DOOR_PORT       5813
 #define DOOR_LISTEN     5
@@ -87,53 +87,53 @@ servant_run(int servant_sock)
 #error "Do not support ptsname."
 #endif
 
-    if (fork()) {
-        /* In master. */
-        close(pty_slave);
+    /* if (fork()) { */
+    /*     /\* In master. *\/ */
+    /*     close(pty_slave); */
 
-        for (;;) {
-            char buf[1024];
-            size_t recv_len, send_len;
+    /*     for (;;) { */
+    /*         char buf[1024]; */
+    /*         size_t recv_len, send_len; */
 
-            select();
+    /*         select(); */
 
-            if () {
-                memset(buf, 0, sizeof buf);
-                /* receives commands. */
-                recv_len = recv(servant_sock, buf, sizeof buf, 0);
-                if (recv_len < 0) {
-                    continue;
-                }
-                /* passes commands to child. */
-                send_len = send(pty_master, buf, recv_len, 0);
-                assert(send_len == recv_len);
-            } else if () {
-                memset(buf, 0, sizeof buf);
-                /* waits for execution result. */
-                recv_len = recv(pty_master, buf, sizeof buf, 0);
-                if (recv_len < 0) {
-                    continue;
-                }
-                /* sends execution result back. */
-                send_len = send(serveant_sock, buf, recv_len, 0);
-                assert(send_len == recv_len);
-            } else {
-                assert(false);
-            }
-        }
-    } else {
-        struct termios term_settings;
+    /*         if () { */
+    /*             memset(buf, 0, sizeof buf); */
+    /*             /\* receives commands. *\/ */
+    /*             recv_len = recv(servant_sock, buf, sizeof buf, 0); */
+    /*             if (recv_len < 0) { */
+    /*                 continue; */
+    /*             } */
+    /*             /\* passes commands to child. *\/ */
+    /*             send_len = send(pty_master, buf, recv_len, 0); */
+    /*             assert(send_len == recv_len); */
+    /*         } else if () { */
+    /*             memset(buf, 0, sizeof buf); */
+    /*             /\* waits for execution result. *\/ */
+    /*             recv_len = recv(pty_master, buf, sizeof buf, 0); */
+    /*             if (recv_len < 0) { */
+    /*                 continue; */
+    /*             } */
+    /*             /\* sends execution result back. *\/ */
+    /*             send_len = send(serveant_sock, buf, recv_len, 0); */
+    /*             assert(send_len == recv_len); */
+    /*         } else { */
+    /*             assert(false); */
+    /*         } */
+    /*     } */
+    /* } else { */
+    /*     struct termios term_settings; */
 
-        /* In slave, start an interactive shell. */
-        tcgetattr(pty_slave, &term_settings);
-        cfmakeraw(&term_settings);
-        tcsetattr(pty_slave, TCSANOW, &term_settings);
-        close(pty_master);
-        dup(pty_slave);
-        dup(pty_slave);
-        dup(pty_slave);
-        execl("/bin/sh", "sh", "-i", NULL);
-    }
+    /*     /\* In slave, start an interactive shell. *\/ */
+    /*     tcgetattr(pty_slave, &term_settings); */
+    /*     cfmakeraw(&term_settings); */
+    /*     tcsetattr(pty_slave, TCSANOW, &term_settings); */
+    /*     close(pty_master); */
+    /*     dup(pty_slave); */
+    /*     dup(pty_slave); */
+    /*     dup(pty_slave); */
+    /*     execl("/bin/sh", "sh", "-i", NULL); */
+    /* } */
 
 err:
     close(pty_master);

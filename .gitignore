@@ -1,6 +1,14 @@
+#*#
+*.a
+*.o
+*~
+.deps
+.libs
+.dirstamp
 /Makefile
 /Makefile.in
 /aclocal.m4
+/autom4te.cache
 /config.h
 /config.h.in
 /config.log
