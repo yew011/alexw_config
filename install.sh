@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# This file is soon to be abondoned as we are moving toward using
+# GNU autoconf framework.
+
 FORCE=
 
 # --force option, be careful~
