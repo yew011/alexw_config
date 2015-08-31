@@ -1,6 +1,6 @@
 ;; Alex W, emacs config
 ;; to be further enriched,
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 (require 'git)
 (require 'git-blame)
