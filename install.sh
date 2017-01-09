@@ -55,6 +55,8 @@ function tmux_attach () {
 
 alias rmt='rm *~'
 alias rmh='rm \#*'
+alias wn1='watch -n1 -d'
+alias ll='ls -alrth'
 
 export PATH=\$PATH:\$HOME/.alex_bin
 export EDITOR=/usr/bin/emacs
