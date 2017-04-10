@@ -133,7 +133,10 @@ alias rmh='rm \#*'
 alias wn1='watch -n1 -d'
 alias ll='ls -alrth'
 
-export PATH=$PATH:$HOME/.alex_bin
+export PATH=/usr/local/go/bin:$PATH:$HOME/.alex_bin
+export DPDK_DIR=~/alex_dev/dpdk
+export DPDK_BUILD=$DPDK_DIR/x86_64-native-linuxapp-gcc/
+export GOPATH=~/alex_dev/go
 export EDITOR=/usr/bin/emacs
 export LC_ALL=C
 ########## alexw_config ##########
