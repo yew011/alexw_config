@@ -7,7 +7,7 @@ FORCE=
 
 # --force option, be careful~
 if [ "$1" = "--force" ] ; then
-    FORCE="--force"
+    FORCE="-f"
 fi
 
 # warning of '--force'
