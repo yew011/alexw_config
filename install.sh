@@ -24,7 +24,7 @@ fi
 ln -s $FORCE $PWD/.alex_bin ~/.alex_bin
 
 # copy other config files
-for f in `find . -maxdepth 1 -type f`; do
+for f in `find . -maxdepth 1 -type f -name '.*'`; do
     ln -s $FORCE $PWD/$f ~ || help
 done
 
